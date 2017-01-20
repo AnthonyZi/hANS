@@ -4,7 +4,6 @@
 #include <vector>
 
 #include "hanslayer.h"
-
 #include "hans_defs.h"
 
 
@@ -22,9 +21,6 @@ private:
         std::vector<float> layerinput;
         std::vector<float> layeroutput;
 
-        //mini-functions (these could possible be implemented inline)
-        float rand_uniform(float pmin, float pmax);
-
         void init_net(layer_v);
 
         //calls backpropagation-methods of the layers and saves the gradients
@@ -36,6 +32,8 @@ public:
         Hans();
 
         void feedforward(std::vector<float> pinput);
+
+        void add_layer(HansLayer* pHansP);
 };
 
 #endif

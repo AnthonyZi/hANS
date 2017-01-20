@@ -2,6 +2,7 @@
 #define HANSLAYERH
 
 #include <vector>
+#include <random>
 
 /*
  * a1 a2 a3 a4 | arrangement in the ram
@@ -20,13 +21,15 @@ typedef std::vector<std::vector<float> > weights;
 class HansLayer
 {
 private:
-        int inputs_dim;
-        int neurons_dim;
+        const int inputs_dim;
+        const int neurons_dim;
 
         //weights for the forward pass (last column represents the bias)
         weights w;
         //variables holding the gradients/averaged gradients (last column bias)
         weights dw;
+
+        void init_weights();
 
         virtual void feedforward() = 0;
         virtual void backprop() = 0;
