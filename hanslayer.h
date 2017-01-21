@@ -18,9 +18,10 @@
  */
 typedef std::vector<std::vector<float> > weights;
 
+
 class HansLayer
 {
-private:
+protected:
         const int inputs_dim;
         const int neurons_dim;
 
@@ -29,17 +30,18 @@ private:
         //variables holding the gradients/averaged gradients (last column bias)
         weights dw;
 
-        void init_weights();
+private:
+        void init_weights(float pweights_min_init, float pweights_max_int, float pbias_init);
 
-        virtual void feedforward() = 0;
-        virtual void backprop() = 0;
 
-        virtual void update_vanilla() = 0;
 
 public:
         HansLayer(int pinputs_dim, int pneurons_dim, float pweights_min_init, float pweights_max_init, float pbias_init);
         virtual ~HansLayer();
 
+        virtual std::vector<float> feedforward(std::vector<float> pinput) = 0;
+        virtual std::vector<float> backprop(std::vector<float> pinput_right) = 0;
+        virtual void update_vanilla() = 0;
 };
 
 #endif

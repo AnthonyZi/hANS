@@ -1,12 +1,16 @@
 #ifndef HANSLAYER_DENSE_H
 #define HANSLAYER_DENSE_H
 
+#include "hanslayer.h"
+
+#include <iostream>
+
 class HansLayer_Dense : public HansLayer
 {
 private:
 
-        virtual void feedforward();
-        virtual void backprop();
+        virtual std::vector<float> feedforward(std::vector<float> pinput);
+        virtual std::vector<float> backprop(std::vector<float> pinput_right);
 
         virtual void update_vanilla();
 

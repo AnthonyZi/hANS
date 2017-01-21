@@ -14,12 +14,17 @@ HansLayer::HansLayer(
         init_weights(pweights_min_init, pweights_max_init, pbias_init);
 }
 
+HansLayer::~HansLayer()
+{
+        //erase all pointers here
+}
+
 void HansLayer::init_weights(float pweights_min_init, float pweights_max_init, float pbias_init)
 {
         //initialization of the weights
         std::random_device rd;
         std::mt19937 gen(rd());
-        std::uniform_real_distribution<float> dis(pweights_min_init, weights_max_init);
+        std::uniform_real_distribution<float> dis(pweights_min_init, pweights_max_init);
         for(int row = 0; row<neurons_dim; row++)
         {
                 for(int col = 0; col<inputs_dim; col++)
