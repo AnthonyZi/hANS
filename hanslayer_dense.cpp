@@ -21,29 +21,49 @@ std::vector<float> HansLayer_Dense::feedforward(std::vector<float> pinput)
         std::vector<float> out;
         float current_neuron;
 
-        std::cout << "input = np.array([ ";
-        for(int i = 0; i < pinput.size(); i++)
-        {
-                std::cout << pinput[i] << ", ";
-        }
-        std::cout << "1]);" << std::endl;
+//---        std::cout << "input = np.array([ ";
+//---        for(unsigned int i = 0; i < pinput.size(); i++)
+//---        {
+//---                std::cout << pinput[i] << ", ";
+//---        }
+//---        std::cout << "1]);" << std::endl;
+//---
+//---        std::cout << "w_ = np.array([";
+//---        for(unsigned int i = 0; i < neurons_dim; i++)
+//---        {
+//---                std::cout << "[ ";
+//---                for(unsigned int j = 0; j < inputs_dim+1; j++)
+//---                {
+//---                        if(j < inputs_dim)
+//---                                std::cout << w[i][j] << ", ";
+//---                        else
+//---                                std::cout << w[i][j] << " ";
+//---                }
+//---//                if(i < w.size()-1)
+//---//                        std::cout << std::endl;
+//---//                else
+//---//                        std::cout << "]" << std::endl;
+//---                if(i == neurons_dim-1)
+//---                        std::cout << "]]);" << std::endl;
+//---                else
+//---                        std::cout << "],";
+//---        }
 
-        std::cout << "w_ = np.array([";
-        for(int i = 0; i < w.size(); i++)
-        {
-                std::cout << "[ ";
-                for(int j = 0; j < this->w[0].size(); j++)
-                {
-                        std::cout << w[i][j] << ", ";
-                }
-                std::cout << "],";
-//                if(i < w.size()-1)
-//                        std::cout << std::endl;
-//                else
-//                        std::cout << "]" << std::endl;
-                if(i == w.size()-1)
-                        std::cout << "]);" << std::endl;
-        }
+
+//---        for(int j = 0; j < inputs_dim; j++)
+//---        {
+//---                current_neuron = 0;
+//---                int i;
+//---                //j from 0 to inputs_dim-1 (range of inputs_dim values)
+//---                for(int i = 0; i < neurons_dim; i++)
+//---                {
+//---                        current_neuron += pinput[j]*w[i][j];
+//---                }
+//---                //the bias saved in the additional column (inputs_dim'th value)
+//---                current_neuron += 1*w[i][j];
+//---                out.push_back(current_neuron);
+//---        }
+
 
         for(int i = 0; i < neurons_dim; i++)
         {
@@ -57,7 +77,6 @@ std::vector<float> HansLayer_Dense::feedforward(std::vector<float> pinput)
                 //the bias saved in the additional column (inputs_dim'th value)
                 current_neuron += 1*w[i][j];
                 out.push_back(current_neuron);
-                std::cout << "run ok" << std::endl;
         }
         return out;
 }

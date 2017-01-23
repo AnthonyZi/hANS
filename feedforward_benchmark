@@ -1,0 +1,23 @@
+./aitest
+feedforward-start
+iterations: 5000
+feedforward-end
+64
+-3.0183e+13 
+zmann@Goku:~/git/hANS$ python
+Python 2.7.9 (default, Mar  1 2015, 12:57:24) 
+[GCC 4.9.2] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import ait
+>>> ait.testt(5000)
+66.6912038326
+>>> quit()
+
+
+used:
+c++:
+        dense_layers: 5->10->1000->40->3000->2000->1000->1
+
+python: fixed set of weight-matrices imported (data taken from c++-printout)
+        np.dot(weights, input) to simulate dense_layers:
+        dense_layers: 5->10->1000->40->3000->2000->1000->1

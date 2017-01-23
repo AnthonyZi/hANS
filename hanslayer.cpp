@@ -31,6 +31,6 @@ void HansLayer::init_weights(float pweights_min_init, float pweights_max_init, f
                 {
                         w[row][col] = dis(gen);
                 }
-                w[row][inputs_dim+1] = pbias_init;
+                w[row][inputs_dim] = pbias_init;
         }
 }
