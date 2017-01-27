@@ -18,6 +18,9 @@ class Hans
 {
 private:
         layer_v layers;
+
+        std::vector<float> (*const cost_derivative)(std::vector<float>, std::vector<float>);
+
 //---        std::vector<float> layerinput;
 //---        std::vector<float> layeroutput;
 
@@ -29,9 +32,12 @@ private:
         //calculate (1/m)*sum(m_gradients) - average over m gradients
 //---        void batch_backprop(std::vector<training_data_s>* ptraining_data_s_batch);
 public:
-        Hans();
+        Hans(std::vector<float> (*cost_derivative)(std::vector<float>, std::vector<float>) );
 
         std::vector<float> feednet(std::vector<float> pinput);
+        void backpropagate(std::vector<float> pnetwork_out, std::vector<float> pdesired_out);
+
+        void update_vanilla(float plearning_rate);
 
         void add_layer(HansLayer* pHansP);
 };

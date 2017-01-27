@@ -1,0 +1,260 @@
+-- setup 1 --
+using:
+
+HansLayer_Dense a1 = HansLayer_Dense(5    , 10   , -0.001 , 0.001 , 0.1 , Transferer::t_tanh);
+HansLayer_Dense a2 = HansLayer_Dense(10   , 1000 , -0.001 , 0.001 , 0.1 , Transferer::t_tanh);
+HansLayer_Dense a3 = HansLayer_Dense(1000 , 40   , -0.001 , 0.001 , 0.1 , Transferer::t_tanh);
+HansLayer_Dense a4 = HansLayer_Dense(40   , 3000 , -0.001 , 0.001 , 0.1 , Transferer::t_tanh);
+HansLayer_Dense a5 = HansLayer_Dense(3000 , 2000 , -0.001 , 0.001 , 0.1 , Transferer::t_tanh);
+HansLayer_Dense a6 = HansLayer_Dense(2000 , 1000 , -0.001 , 0.001 , 0.1 , Transferer::t_tanh);
+HansLayer_Dense a7 = HansLayer_Dense(1000 , 1    , -0.001 , 0.001 , 0.1 , Transferer::t_tanh);
+
+with following implementation:
+
+for(int i = 0; i < neurons_dim; i++)
+{
+        /// one neuron is beeing calculated in dependence of the layer before
+        current_neuron = 0;
+        int j;
+        //j from 0 to inputs_dim-1 (range of inputs_dim values)
+        for(j = 0; j < inputs_dim; j++)
+        {
+                current_neuron += pinput[j]*w[i][j];
+        }
+        /// one neuron is finished beeing calculated
+                                                                              
+                                                                              
+                                                                              
+        //the bias saved in the additional column (inputs_dim'th value)
+        current_neuron += w[i][j];
+                                                                              
+        //activation function
+        //current_neuron = activation(current_neuron);
+                                                                              
+                                                                              
+        out.push_back(current_neuron);
+}
+for(int i = 0; i < neurons_dim; i++)
+        out[i] = activation(out[i]);
+
+benchmark results:
+
+./aitest
+feedforward-start
+iterations: 5000
+feedforward-end
+63
+0.100967 
+
+./aitest
+feedforward-start
+iterations: 5000
+feedforward-end
+64
+0.0997067 
+
+./aitest
+feedforward-start
+iterations: 5000
+feedforward-end
+63
+0.0998222 
+
+./aitest
+feedforward-start
+iterations: 50000
+feedforward-end
+643
+0.0968758 
+
+./aitest
+feedforward-start
+iterations: 50000
+feedforward-end
+645
+0.100805 
+
+./aitest
+feedforward-start
+iterations: 50000
+feedforward-end
+644
+0.0990589 
+
+
+-------------------------------------------------------------------------------
+
+-- setup 2 --
+using:
+
+HansLayer_Dense a1 = HansLayer_Dense(5    , 10   , -0.001 , 0.001 , 0.1 , Transferer::t_tanh);
+HansLayer_Dense a2 = HansLayer_Dense(10   , 1000 , -0.001 , 0.001 , 0.1 , Transferer::t_tanh);
+HansLayer_Dense a3 = HansLayer_Dense(1000 , 40   , -0.001 , 0.001 , 0.1 , Transferer::t_tanh);
+HansLayer_Dense a4 = HansLayer_Dense(40   , 3000 , -0.001 , 0.001 , 0.1 , Transferer::t_tanh);
+HansLayer_Dense a5 = HansLayer_Dense(3000 , 2000 , -0.001 , 0.001 , 0.1 , Transferer::t_tanh);
+HansLayer_Dense a6 = HansLayer_Dense(2000 , 1000 , -0.001 , 0.001 , 0.1 , Transferer::t_tanh);
+HansLayer_Dense a7 = HansLayer_Dense(1000 , 1    , -0.001 , 0.001 , 0.1 , Transferer::t_tanh);
+
+with following implementation:
+
+for(int i = 0; i < neurons_dim; i++)
+{
+        /// one neuron is beeing calculated in dependence of the layer before
+        current_neuron = 0;
+        int j;
+        //j from 0 to inputs_dim-1 (range of inputs_dim values)
+        for(j = 0; j < inputs_dim; j++)
+        {
+                current_neuron += pinput[j]*w[i][j];
+        }
+        /// one neuron is finished beeing calculated
+                                                                              
+                                                                              
+                                                                              
+        //the bias saved in the additional column (inputs_dim'th value)
+        current_neuron += w[i][j];
+                                                                              
+        //activation function
+        current_neuron = activation(current_neuron);
+                                                                              
+                                                                              
+        out.push_back(current_neuron);
+}
+
+benchmark results:
+
+./aitest
+feedforward-start
+iterations: 5000
+feedforward-end
+65
+0.100144 
+
+./aitest
+feedforward-start
+iterations: 5000
+feedforward-end
+65
+0.0987025 
+
+./aitest
+feedforward-start
+iterations: 5000
+feedforward-end
+64
+0.0989829 
+
+./aitest
+feedforward-start
+iterations: 50000
+feedforward-end
+648
+0.0987807 
+
+./aitest
+feedforward-start
+iterations: 50000
+feedforward-end
+649
+0.0991787 
+
+
+-------------------------------------------------------------------------------
+
+-- setup 3 --
+using:
+
+HansLayer_Dense a1 = HansLayer_Dense(5    , 10   , -0.001 , 0.001 , 0.1 , Transferer::t_tanh);
+HansLayer_Dense a2 = HansLayer_Dense(10   , 1000 , -0.001 , 0.001 , 0.1 , Transferer::t_tanh);
+HansLayer_Dense a3 = HansLayer_Dense(1000 , 40   , -0.001 , 0.001 , 0.1 , Transferer::t_tanh);
+HansLayer_Dense a4 = HansLayer_Dense(40   , 3000 , -0.001 , 0.001 , 0.1 , Transferer::t_tanh);
+HansLayer_Dense a5 = HansLayer_Dense(3000 , 2000 , -0.001 , 0.001 , 0.1 , Transferer::t_tanh);
+HansLayer_Dense a6 = HansLayer_Dense(2000 , 1000 , -0.001 , 0.001 , 0.1 , Transferer::t_tanh);
+HansLayer_Dense a7 = HansLayer_Dense(1000 , 1    , -0.001 , 0.001 , 0.1 , Transferer::t_tanh);
+
+with following implementation:
+
+--hanslayer_dense.cpp--
+for(int i = 0; i < neurons_dim; i++)
+{
+        /// one neuron is beeing calculated in dependence of the layer before
+        current_neuron = 0;
+        int j;
+        //j from 0 to inputs_dim-1 (range of inputs_dim values)
+        for(j = 0; j < inputs_dim; j++)
+        {
+                current_neuron += pinput[j]*w[i][j];
+        }
+        /// one neuron is finished beeing calculated
+
+
+
+        //the bias saved in the additional column (inputs_dim'th value)
+        current_neuron += w[i][j];
+
+        //activation function
+        //current_neuron = activation(current_neuron);
+
+
+        out.push_back(current_neuron);
+}
+
+--hans.cpp--
+std::vector<float> Hans::feednet(std::vector<float> pinput)
+{
+        std::vector<float> current_vector = pinput;
+        for(layer_v::iterator it = layers.begin(); it != layers.end(); it++)
+        {
+                current_vector = (*it)->feedforward(current_vector);
+                for(unsigned int i = 0; i<current_vector.size(); i++)
+                        current_vector[i] = Transferer::t_tanh(current_vector[i]);
+        }
+        return current_vector;
+}
+
+benchmark results:
+
+./aitest
+feedforward-start
+iterations: 5000
+feedforward-end
+64
+0.0999789 
+
+./aitest
+feedforward-start
+iterations: 5000
+feedforward-end
+64
+0.0969276 
+
+./aitest
+feedforward-start
+iterations: 5000
+feedforward-end
+64
+0.097728
+
+./aitest
+feedforward-start
+iterations: 50000
+feedforward-end
+642
+0.100701 
+
+./aitest
+feedforward-start
+iterations: 50000
+feedforward-end
+640
+0.102018 
+
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+comparing the 5000-iteration sets:
+comparing setup 1 and 2 it could be that the compiler already recognizes the
+potential optimization and optimizes to equivalent code.
+taking setup 3 in account it seems that the additional for loop is not that
+computationally expensive. if the compiler recognizes optimization here this
+would be very awesome, but is possible too.

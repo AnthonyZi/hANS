@@ -14,17 +14,17 @@ ADDITIONALCFLAGS = #-pthread -I/usr/include/gtkmm-3.0 -I/usr/lib/i386-linux-gnu/
 NAME = aitest
 
 CSOURCE =
-CPPSOURCE = ai.cpp hans.cpp hanslayer.cpp hanslayer_dense.cpp
+CPPSOURCE = ai.cpp hans.cpp hanslayer.cpp hanslayer_dense.cpp transferer.cpp costs.cpp
 
 #################
 
 OBJS += $(patsubst %.cpp, %.o, $(filter %.cpp, $(CPPSOURCE)))
 OBJS += $(patsubst $.c, %.o, $(filter %.c, $(CSOURCE)))
 
-%.o : %.c
+%.o : %.c %.h
 	$(CC) -c $(CFLAGS) -o $@ $< $(ADDITIONALCFLAGS)
 
-%.o : %.cpp
+%.o : %.cpp %.h
 	$(CXX) -c $(CXXFLAGS) -o $@ $< $(ADDITIONALCFLAGS)
 
 default : $(NAME)
@@ -35,6 +35,13 @@ e :
 	$(MAKE) $(NAME)
 	clear
 	./$(NAME)
+debug :
+	clear
+	$(CFLAGS) += -g
+	$(MAKE) $(NAME)
+	clear
+	gdb ./$(NAME)
+
 
 all :
 	$(MAKE) $(NAME)	
